@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocalDatabaseImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TicketApp</a> &gt; <a href="index.source.html" class="el_package">ie.gmit.repository</a> &gt; <span class="el_source">LocalDatabaseImpl.java</span></div><h1>LocalDatabaseImpl.java</h1><pre class="source lang-java linenums">package ie.gmit.repository;
+
+import ie.gmit.data.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class LocalDatabaseImpl implements LocalDatabase {
+
+<span class="fc" id="L11">    private HashMap&lt;Country, ArrayList&lt;Ticket&gt;&gt; tickets = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L12">    private ArrayList&lt;Country&gt; countries = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L13">    private ArrayList&lt;Order&gt; orders = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L15">    public LocalDatabaseImpl() {</span>
+<span class="fc" id="L16">        Country england = new Country(&quot;England&quot;);</span>
+<span class="fc" id="L17">        Country spain = new Country(&quot;Spain&quot;);</span>
+<span class="fc" id="L18">        Country germany = new Country(&quot;Germany&quot;);</span>
+<span class="fc" id="L19">        Country france = new Country(&quot;France&quot;);</span>
+<span class="fc" id="L20">        countries.add(england);</span>
+<span class="fc" id="L21">        countries.add(spain);</span>
+<span class="fc" id="L22">        countries.add(germany);</span>
+<span class="fc" id="L23">        countries.add(france);</span>
+
+<span class="fc" id="L25">        EPL liverpool = new EPL();</span>
+<span class="fc" id="L26">        liverpool.setTicketCode(&quot;liverpool&quot;);</span>
+<span class="fc" id="L27">        liverpool.setMatch(&quot;Liverpool vs Chelsea&quot;);</span>
+<span class="fc" id="L28">        liverpool.setDate(&quot;April 14th&quot;);</span>
+<span class="fc" id="L29">        liverpool.setLocation(&quot;Stanford Bridge&quot;);</span>
+<span class="fc" id="L30">        liverpool.setSeatNumber(&quot;20B&quot;);</span>
+<span class="fc" id="L31">        liverpool.setTicketNumber(&quot;1234c787&quot;);</span>
+<span class="fc" id="L32">        liverpool.setPrice(65.00);</span>
+
+<span class="fc" id="L34">        EPL city = new EPL();</span>
+<span class="fc" id="L35">        city.setTicketCode(&quot;city&quot;);</span>
+<span class="fc" id="L36">        city.setMatch(&quot;Man City vs Liverpool&quot;);</span>
+<span class="fc" id="L37">        city.setDate(&quot;April 10th&quot;);</span>
+<span class="fc" id="L38">        city.setLocation(&quot;Eithad Stadium&quot;);</span>
+<span class="fc" id="L39">        city.setSeatNumber(&quot;345C&quot;);</span>
+<span class="fc" id="L40">        city.setTicketNumber(&quot;234D2&quot;);</span>
+<span class="fc" id="L41">        city.setPrice(55.34);</span>
+
+<span class="fc" id="L43">        EPL united = new EPL();</span>
+<span class="fc" id="L44">        united.setTicketCode(&quot;united&quot;);</span>
+<span class="fc" id="L45">        united.setMatch(&quot;Liverpool vs Man United&quot;);</span>
+<span class="fc" id="L46">        united.setDate(&quot;May 12th&quot;);</span>
+<span class="fc" id="L47">        united.setLocation(&quot;Anfield Stadium&quot;);</span>
+<span class="fc" id="L48">        united.setSeatNumber(&quot;68F&quot;);</span>
+<span class="fc" id="L49">        united.setTicketNumber(&quot;124A34&quot;);</span>
+<span class="fc" id="L50">        united.setPrice(49.90);</span>
+
+<span class="fc" id="L52">        ArrayList&lt;Ticket&gt; englands = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L53">        englands.add(liverpool);</span>
+<span class="fc" id="L54">        englands.add(city);</span>
+<span class="fc" id="L55">        englands.add(united);</span>
+<span class="fc" id="L56">        tickets.put(england, englands);</span>
+
+<span class="fc" id="L58">        LaLiga madrid = new LaLiga();</span>
+<span class="fc" id="L59">        madrid.setTicketCode(&quot;madrid&quot;);</span>
+<span class="fc" id="L60">        madrid.setMatch(&quot;Real vs Barca&quot;);</span>
+<span class="fc" id="L61">        madrid.setDate(&quot;May 3rd&quot;);</span>
+<span class="fc" id="L62">        madrid.setLocation(&quot;Santiago Bernabu&quot;);</span>
+<span class="fc" id="L63">        madrid.setSeatNumber(&quot;69C&quot;);</span>
+<span class="fc" id="L64">        madrid.setTicketNumber(&quot;125CB1&quot;);</span>
+<span class="fc" id="L65">        madrid.setPrice(90.00);</span>
+
+<span class="fc" id="L67">        LaLiga barca = new LaLiga();</span>
+<span class="fc" id="L68">        barca.setTicketCode(&quot;barca&quot;);</span>
+<span class="fc" id="L69">        barca.setMatch(&quot;Barcelona vs Malaga&quot;);</span>
+<span class="fc" id="L70">        barca.setDate(&quot;Feb 12th&quot;);</span>
+<span class="fc" id="L71">        barca.setLocation(&quot;Barcelona Stadium&quot;);</span>
+<span class="fc" id="L72">        barca.setSeatNumber(&quot;20A&quot;);</span>
+<span class="fc" id="L73">        barca.setTicketNumber(&quot;74CF213&quot;);</span>
+<span class="fc" id="L74">        barca.setPrice(65.00);</span>
+
+<span class="fc" id="L76">        LaLiga atletico = new LaLiga();</span>
+<span class="fc" id="L77">        atletico.setTicketCode(&quot;atletico&quot;);</span>
+<span class="fc" id="L78">        atletico.setMatch(&quot;Atletico vs Real Madrid&quot;);</span>
+<span class="fc" id="L79">        atletico.setDate(&quot;March 20th&quot;);</span>
+<span class="fc" id="L80">        atletico.setLocation(&quot;Atletico Stadium&quot;);</span>
+<span class="fc" id="L81">        atletico.setSeatNumber(&quot;51S&quot;);</span>
+<span class="fc" id="L82">        atletico.setTicketNumber(&quot;124F65&quot;);</span>
+<span class="fc" id="L83">        atletico.setPrice(39.90);</span>
+
+<span class="fc" id="L85">        ArrayList&lt;Ticket&gt; spains = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L86">        spains.add((madrid));</span>
+<span class="fc" id="L87">        spains.add(barca);</span>
+<span class="fc" id="L88">        spains.add(atletico);</span>
+<span class="fc" id="L89">        tickets.put(spain, spains);</span>
+
+<span class="fc" id="L91">        Bundesliga bayern = new Bundesliga();</span>
+<span class="fc" id="L92">        bayern.setTicketCode(&quot;bayern&quot;);</span>
+<span class="fc" id="L93">        bayern.setMatch(&quot;Real vs Bayern&quot;);</span>
+<span class="fc" id="L94">        bayern.setDate(&quot;May 3rd&quot;);</span>
+<span class="fc" id="L95">        bayern.setLocation(&quot;Santiago Bernabu&quot;);</span>
+<span class="fc" id="L96">        bayern.setSeatNumber(&quot;69C&quot;);</span>
+<span class="fc" id="L97">        bayern.setTicketNumber(&quot;125CB1&quot;);</span>
+<span class="fc" id="L98">        bayern.setPrice(90.00);</span>
+
+<span class="fc" id="L100">        Bundesliga dortmund = new Bundesliga();</span>
+<span class="fc" id="L101">        dortmund.setTicketCode(&quot;dortmund&quot;);</span>
+<span class="fc" id="L102">        dortmund.setMatch(&quot;Dortmund vs Malaga&quot;);</span>
+<span class="fc" id="L103">        dortmund.setDate(&quot;Feb 12th&quot;);</span>
+<span class="fc" id="L104">        dortmund.setLocation(&quot;Barcelona Stadium&quot;);</span>
+<span class="fc" id="L105">        dortmund.setSeatNumber(&quot;20A&quot;);</span>
+<span class="fc" id="L106">        dortmund.setTicketNumber(&quot;74CF213&quot;);</span>
+<span class="fc" id="L107">        dortmund.setPrice(65.00);</span>
+
+<span class="fc" id="L109">        Bundesliga schalke = new Bundesliga();</span>
+<span class="fc" id="L110">        schalke.setTicketCode(&quot;schalke&quot;);</span>
+<span class="fc" id="L111">        schalke.setMatch(&quot;Schalke vs Real Madrid&quot;);</span>
+<span class="fc" id="L112">        schalke.setDate(&quot;March 20th&quot;);</span>
+<span class="fc" id="L113">        schalke.setLocation(&quot;Atletico Stadium&quot;);</span>
+<span class="fc" id="L114">        schalke.setSeatNumber(&quot;51S&quot;);</span>
+<span class="fc" id="L115">        schalke.setTicketNumber(&quot;124F65&quot;);</span>
+<span class="fc" id="L116">        schalke.setPrice(39.90);</span>
+
+<span class="fc" id="L118">        ArrayList&lt;Ticket&gt; germaries = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L119">        germaries.add(bayern);</span>
+<span class="fc" id="L120">        germaries.add(dortmund);</span>
+<span class="fc" id="L121">        germaries.add(schalke);</span>
+<span class="fc" id="L122">        tickets.put(germany, germaries);</span>
+
+<span class="fc" id="L124">        Ligue1 psg = new Ligue1();</span>
+<span class="fc" id="L125">        psg.setTicketCode(&quot;psg&quot;);</span>
+<span class="fc" id="L126">        psg.setMatch(&quot;PSG vs Bayern&quot;);</span>
+<span class="fc" id="L127">        psg.setDate(&quot;May 3rd&quot;);</span>
+<span class="fc" id="L128">        psg.setLocation(&quot;Santiago Bernabu&quot;);</span>
+<span class="fc" id="L129">        psg.setSeatNumber(&quot;69C&quot;);</span>
+<span class="fc" id="L130">        psg.setTicketNumber(&quot;125CB1&quot;);</span>
+<span class="fc" id="L131">        psg.setPrice(90.00);</span>
+
+<span class="fc" id="L133">        Ligue1 marseille = new Ligue1();</span>
+<span class="fc" id="L134">        marseille.setTicketCode(&quot;marseille&quot;);</span>
+<span class="fc" id="L135">        marseille.setMatch(&quot;Marseille vs Malaga&quot;);</span>
+<span class="fc" id="L136">        marseille.setDate(&quot;Feb 12th&quot;);</span>
+<span class="fc" id="L137">        marseille.setLocation(&quot;Barcelona Stadium&quot;);</span>
+<span class="fc" id="L138">        marseille.setSeatNumber(&quot;20A&quot;);</span>
+<span class="fc" id="L139">        marseille.setTicketNumber(&quot;74CF213&quot;);</span>
+<span class="fc" id="L140">        marseille.setPrice(65.00);</span>
+
+<span class="fc" id="L142">        Ligue1 lile = new Ligue1();</span>
+<span class="fc" id="L143">        lile.setTicketCode(&quot;lile&quot;);</span>
+<span class="fc" id="L144">        lile.setMatch(&quot;Lile vs Real Madrid&quot;);</span>
+<span class="fc" id="L145">        lile.setDate(&quot;March 20th&quot;);</span>
+<span class="fc" id="L146">        lile.setLocation(&quot;Atletico Stadium&quot;);</span>
+<span class="fc" id="L147">        lile.setSeatNumber(&quot;51S&quot;);</span>
+<span class="fc" id="L148">        lile.setTicketNumber(&quot;124F65&quot;);</span>
+<span class="fc" id="L149">        lile.setPrice(39.90);</span>
+
+<span class="fc" id="L151">        ArrayList&lt;Ticket&gt; frances = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L152">        frances.add(psg);</span>
+<span class="fc" id="L153">        frances.add(marseille);</span>
+<span class="fc" id="L154">        frances.add(lile);</span>
+<span class="fc" id="L155">        tickets.put(france, frances);</span>
+<span class="fc" id="L156">    }</span>
+
+    @Override
+    public List&lt;Country&gt; getCountries() {
+<span class="fc" id="L160">        return countries;</span>
+    }
+
+    @Override
+    public List&lt;Ticket&gt; getTickets(Country country) {
+<span class="nc" id="L165">        return tickets.get(country);</span>
+    }
+
+    @Override
+    public void saveOrder(Order order) {
+<span class="nc" id="L170">        orders.add(order);</span>
+<span class="nc" id="L171">    }</span>
+
+    @Override
+    public List&lt;Order&gt; getOrders() {
+<span class="nc" id="L175">        return orders;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

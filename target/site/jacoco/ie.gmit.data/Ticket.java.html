@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Ticket.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TicketApp</a> &gt; <a href="index.source.html" class="el_package">ie.gmit.data</a> &gt; <span class="el_source">Ticket.java</span></div><h1>Ticket.java</h1><pre class="source lang-java linenums">package ie.gmit.data;
+
+import java.text.NumberFormat;
+
+public class Ticket {
+    private String ticketCode;
+    private String seatNumber;
+    private String match;
+    private String location;
+    private String date;
+    private String ticketNumber;
+    private double price;
+<span class="fc" id="L13">    protected static int count = 0;</span>
+
+
+<span class="fc" id="L16">    public Ticket() {</span>
+<span class="fc" id="L17">    }</span>
+
+    public void setTicketCode(String code) {
+<span class="fc" id="L20">        this.ticketCode = code;</span>
+<span class="fc" id="L21">    }</span>
+
+    public String getTicketCode() {
+<span class="fc" id="L24">        return ticketCode;</span>
+    }
+
+<span class="fc" id="L27">    public String getSeatNumber() { return seatNumber; }</span>
+
+<span class="fc" id="L29">    public void setSeatNumber(String seatNumber) { this.seatNumber = seatNumber; }</span>
+
+<span class="fc" id="L31">    public String getMatch() { return match; }</span>
+
+<span class="fc" id="L33">    public void setMatch(String match) { this.match = match; }</span>
+
+<span class="fc" id="L35">    public String getLocation() { return location; }</span>
+
+<span class="fc" id="L37">    public void setLocation(String location) { this.location = location; }</span>
+
+<span class="fc" id="L39">    public String getDate() { return date; }</span>
+
+<span class="fc" id="L41">    public void setDate(String date) { this.date = date; }</span>
+
+<span class="fc" id="L43">    public String getTicketNumber() { return ticketNumber; }</span>
+
+<span class="fc" id="L45">    public void setTicketNumber(String ticketNumber) { this.ticketNumber = ticketNumber; }</span>
+
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+
+    public void setPrice(double price) {
+<span class="fc" id="L56">        this.price = price;</span>
+<span class="fc" id="L57">    }</span>
+
+    public double getPrice() {
+<span class="fc" id="L60">        return price;</span>
+    }
+
+    public String getPriceFormatted() {
+<span class="nc" id="L64">        NumberFormat currency = NumberFormat.getCurrencyInstance();</span>
+<span class="nc" id="L65">        return currency.format(price);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L70">        return match;</span>
+    }
+
+    public static int getCount() {
+<span class="nc" id="L74">        return count;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
